@@ -19,14 +19,13 @@
 - 🚨 **8 SOC Incident Triage Scenarios:** NIST/MITRE ATT&CK aligned incident investigation (Phishing, Brute Force, Exfiltration, Ransomware, Rogue Admin, DNS Tunneling, API Secret Leak).
 - 🤖 **CyberAI Adaptive Mentor:** Context-aware AI teaching assistant with direct NIST SP 800-53 / OWASP Top 10 citations and custom study plan generator.
 - 💼 **Cybersecurity Career Center:** 6 specialized career paths, 25+ interview Q&A bank, interactive skill dependency graph, and "Am I Job Ready?" calculator.
-- 📱 **Progressive Web App (PWA) & ~10MB App Downloads:** Full offline PWA support with service worker (`sw.js`) and direct 1-click downloads for Android APK (`CyberShield-v1.0.apk`) & Windows Desktop Setup (`CyberShield-Setup-v1.0.exe`).
-- 💻 **Native Windows Desktop App:** Standalone Electron desktop executable launcher with official CyberShield blue shield icon (`cybershield.ico`).
+- 🔮 **3D Holographic Visual Engine & Moving Cyber Code Rain:** Interactive 3D Cyber Shield Globe, mouse-tracking 3D glass tilt cards (`perspective-1000`), and falling green/cyan cyber matrix code rain background.
+- 💎 **4D Hyper-Realistic App Icon:** Crystalline 4D cyber emblem integrated across top navbar, browser favicon, and PWA manifest.
+- 📱 **Multi-Platform WebAPK & iOS App Installer:** Native Google WebAPK 1-Tap installation for Android (0 parse errors), Apple iPhone (iOS) Safari PWA installation, and Windows EXE setup.
 - 📡 **Offline Network Guard:** Intelligent network connectivity monitor locking app features when offline and restoring instant access when internet is reconnected.
 - 💸 **Guest Visitor Ad Monetization Engine:** Integrated Google AdSense slots and sponsored security partner banners generating passive revenue on all visits.
-- 🏅 **Public Certificate & Student Portfolio Portal:** Shareable `/verify/[certificateId]` verification with unique IDs, QR codes, and full skill matrix portfolio showcase.
-- 💬 **Gamification & Community Forum:** Real-time leaderboard rankings, daily/weekly challenges, Q&A discussion board with tag filters & upvotes, and CTF Squads.
-- 🇮🇳 **Pan-India Student Directory:** Student registration with real-time college and state tracking covering IITs, NITs, BITS Pilani, DU, AKTU, VJTI, and major universities across all 28 Indian States & 8 UTs.
-- 🔐 **Restricted Owner Admin Portal:** Password-protected (`ADMIN2026` or custom Master PIN) telemetry dashboard for tracking student rosters, college analytics, and course progress.
+- 🔐 **Restricted Owner Admin Portal:** Password-protected (`ADMIN2026` or custom Master PIN, stealth hotkey `Ctrl+Shift+A`) telemetry dashboard for tracking student rosters and college analytics.
+- 📜 **Permanent History Archive:** See [`PROJECT_HISTORY.md`](./PROJECT_HISTORY.md) for full conversation history, technical milestones, and architectural decisions.
 - 🛡️ **Defensive Hardening & OWASP Compliance:** Complete security audit with HTML input sanitization (`sanitizeInput()`), CSP & anti-clickjacking headers, and zero client-side secret exposure.
 
 ---
