@@ -1,0 +1,17 @@
+{
+  "short_name": "CyberShield",
+  "name": "CyberShield Security Platform",
+  "icons": [
+    {
+      "src": "/cybershield_icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#070a12",
+  "theme_color": "#070a12",
+  "display": "standalone",
+  "orientation": "any"
+}

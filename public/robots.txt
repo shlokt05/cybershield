@@ -1,0 +1,41 @@
+# =========================================================================
+# CyberShield Robots.txt - Optimized for Search Engines & AI LLM Engines
+# (ChatGPT, Perplexity, Google Gemini, Claude, Bing Copilot)
+# =========================================================================
+
+User-agent: *
+Allow: /
+
+# Explicitly Allow All AI Search Crawlers & LLM Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Sitemap Location
+Sitemap: https://cybershield.vercel.app/sitemap.xml
