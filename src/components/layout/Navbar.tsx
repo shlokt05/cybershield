@@ -8,9 +8,10 @@ interface NavbarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   openAuthModal: (mode: 'login' | 'register') => void;
+  onOpenDownloadModal?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAuthModal }) => {
+export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAuthModal, onOpenDownloadModal }) => {
   const { user, logout } = useAuth();
   const { progress } = useUserProgress();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,6 +29,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAut
   }, []);
 
   const triggerMobileInstall = async () => {
+    if (onOpenDownloadModal) {
+      onOpenDownloadModal();
+      return;
+    }
     if (deferredPrompt) {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;

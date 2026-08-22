@@ -4,6 +4,8 @@ import { UserProgressProvider } from './context/UserProgressContext';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { AuthModal } from './components/auth/AuthModal';
+import { OfflineGuard } from './components/common/OfflineGuard';
+import { DownloadAppModal } from './components/common/DownloadAppModal';
 
 import { LandingPage } from './pages/LandingPage';
 import { DashboardPage } from './pages/DashboardPage';
@@ -34,6 +36,7 @@ export function AppContent() {
   const [selectedModuleId, setSelectedModuleId] = useState('web-security');
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState<'login' | 'register'>('login');
+  const [downloadModalOpen, setDownloadModalOpen] = useState(false);
 
   const openAuthModal = (mode: 'login' | 'register') => {
     setAuthModalMode(mode);
@@ -51,72 +54,81 @@ export function AppContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#070a12] text-slate-100 bg-cyber-grid">
-      <Navbar
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        openAuthModal={openAuthModal}
-      />
+    <OfflineGuard>
+      <div className="min-h-screen flex flex-col bg-[#070a12] text-slate-100 bg-cyber-grid">
+        <Navbar
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          openAuthModal={openAuthModal}
+          onOpenDownloadModal={() => setDownloadModalOpen(true)}
+        />
 
-      <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        {activeTab === 'landing' && (
-          <LandingPage
-            onNavigateToDashboard={() => setActiveTab('dashboard')}
-            openAuthModal={openAuthModal}
-            onNavigateToCodeInsights={() => setActiveTab('code-insights')}
-          />
-        )}
+        <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+          {activeTab === 'landing' && (
+            <LandingPage
+              onNavigateToDashboard={() => setActiveTab('dashboard')}
+              openAuthModal={openAuthModal}
+              onNavigateToCodeInsights={() => setActiveTab('code-insights')}
+              onOpenDownloadModal={() => setDownloadModalOpen(true)}
+            />
+          )}
 
-        {activeTab === 'dashboard' && (
-          <DashboardPage
-            onSelectModule={handleSelectModule}
-            onNavigateToCodeInsights={() => setActiveTab('code-insights')}
-          />
-        )}
+          {activeTab === 'dashboard' && (
+            <DashboardPage
+              onSelectModule={handleSelectModule}
+              onNavigateToCodeInsights={() => setActiveTab('code-insights')}
+            />
+          )}
 
-        {activeTab === 'modules' && (
-          <ModuleHubPage
-            initialModuleId={selectedModuleId}
-            onNavigateToCertificate={() => setActiveTab('certificate')}
-            openAuthModal={openAuthModal}
-          />
-        )}
+          {activeTab === 'modules' && (
+            <ModuleHubPage
+              initialModuleId={selectedModuleId}
+              onNavigateToCertificate={() => setActiveTab('certificate')}
+              openAuthModal={openAuthModal}
+            />
+          )}
 
-        {activeTab === 'admin' && <AdminDashboardPage />}
-        {activeTab === 'quiz' && <QuizPage />}
-        {activeTab === 'phishing' && <PhishingSimulatorPage />}
-        {activeTab === 'password' && <PasswordAnalyzerPage />}
-        {activeTab === 'threats' && <ThreatHubPage />}
-        {activeTab === 'checklist' && <ChecklistPage />}
-        {activeTab === 'code-insights' && <CodeInsightsPage />}
-        {activeTab === 'terminal-lab' && <TerminalLabPage />}
-        {activeTab === 'mini-projects' && (
-          <MiniProjectsPage openAuthModal={(mode) => { setAuthModalMode(mode); setAuthModalOpen(true); }} />
-        )}
-        {activeTab === 'interactive-labs' && <InteractiveLabsPage />}
-        {activeTab === 'ctf-arena' && <CtfArenaPage />}
-        {activeTab === 'soc-simulator' && <SocSimulatorPage />}
-        {activeTab === 'cyber-ai' && <CyberAiMentorPage />}
-        {activeTab === 'community' && <GamificationCommunityPage />}
-        {activeTab === 'learning-paths' && <CareerCenterPage />}
-        {activeTab === 'certificate' && <CertificatePage />}
-        {activeTab === 'verify-cert' && (
-          <PublicCertificateVerifyPage onNavigateToPortfolio={() => setActiveTab('profile')} />
-        )}
-        {activeTab === 'profile' && <ProfilePage onNavigateToTab={(t) => setActiveTab(t)} />}
-        {activeTab === 'settings' && <SettingsPage />}
-      </main>
+          {activeTab === 'admin' && <AdminDashboardPage />}
+          {activeTab === 'quiz' && <QuizPage />}
+          {activeTab === 'phishing' && <PhishingSimulatorPage />}
+          {activeTab === 'password' && <PasswordAnalyzerPage />}
+          {activeTab === 'threats' && <ThreatHubPage />}
+          {activeTab === 'checklist' && <ChecklistPage />}
+          {activeTab === 'code-insights' && <CodeInsightsPage />}
+          {activeTab === 'terminal-lab' && <TerminalLabPage />}
+          {activeTab === 'mini-projects' && (
+            <MiniProjectsPage openAuthModal={(mode) => { setAuthModalMode(mode); setAuthModalOpen(true); }} />
+          )}
+          {activeTab === 'interactive-labs' && <InteractiveLabsPage />}
+          {activeTab === 'ctf-arena' && <CtfArenaPage />}
+          {activeTab === 'soc-simulator' && <SocSimulatorPage />}
+          {activeTab === 'cyber-ai' && <CyberAiMentorPage />}
+          {activeTab === 'community' && <GamificationCommunityPage />}
+          {activeTab === 'learning-paths' && <CareerCenterPage />}
+          {activeTab === 'certificate' && <CertificatePage />}
+          {activeTab === 'verify-cert' && (
+            <PublicCertificateVerifyPage onNavigateToPortfolio={() => setActiveTab('profile')} />
+          )}
+          {activeTab === 'profile' && <ProfilePage onNavigateToTab={(t) => setActiveTab(t)} />}
+          {activeTab === 'settings' && <SettingsPage />}
+        </main>
 
-      <Footer />
+        <Footer />
 
-      <AuthModal
-        isOpen={authModalOpen}
-        onClose={() => setAuthModalOpen(false)}
-        initialMode={authModalMode}
-      />
+        <AuthModal
+          isOpen={authModalOpen}
+          onClose={() => setAuthModalOpen(false)}
+          initialMode={authModalMode}
+        />
 
-      <CyberAiMentorWidget />
-    </div>
+        <DownloadAppModal
+          isOpen={downloadModalOpen}
+          onClose={() => setDownloadModalOpen(false)}
+        />
+
+        <CyberAiMentorWidget />
+      </div>
+    </OfflineGuard>
   );
 }
 

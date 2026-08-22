@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Lock, Terminal, CheckCircle2, ArrowRight, Award, Sparkles, Code2, Users, Cpu, School, MapPin } from 'lucide-react';
+import { Shield, Lock, Terminal, CheckCircle2, ArrowRight, Award, Sparkles, Code2, Users, Cpu, School, MapPin, Download } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { GlowCard } from '../components/ui/GlowCard';
 import { Badge } from '../components/ui/Badge';
@@ -7,17 +7,20 @@ import { ScoreGauge } from '../components/ui/ScoreGauge';
 import { REAL_WORLD_CODE_INSIGHTS } from '../lib/mockData';
 import { useAuth } from '../context/AuthContext';
 import { AdBanner } from '../components/ads/AdBanner';
+import { GuestMonetizationBanner } from '../components/monetization/GuestMonetizationBanner';
 
 interface LandingPageProps {
   onNavigateToDashboard: () => void;
   openAuthModal: (mode: 'login' | 'register') => void;
   onNavigateToCodeInsights: () => void;
+  onOpenDownloadModal?: () => void;
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({
   onNavigateToDashboard,
   openAuthModal,
-  onNavigateToCodeInsights
+  onNavigateToCodeInsights,
+  onOpenDownloadModal
 }) => {
   const { studentDirectory, user } = useAuth();
   const realStudentCount = studentDirectory.length;
@@ -63,6 +66,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               icon={<Terminal className="w-5 h-5" />}
             >
               Explore CyberShield Platform
+            </Button>
+            <Button
+              variant="accent"
+              size="lg"
+              onClick={onOpenDownloadModal}
+              icon={<Download className="w-5 h-5 animate-pulse" />}
+            >
+              Download App (~10MB)
             </Button>
             <Button
               variant="secondary"
@@ -118,6 +129,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* SPONSORED MONETIZATION AD BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <GuestMonetizationBanner />
         <AdBanner type="leaderboard" />
       </section>
 
