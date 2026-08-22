@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Lock, Terminal, User, LogOut, Menu, X, Code2, HelpCircle, MailWarning, BookOpen, Compass, Award, ShieldAlert, FolderGit2 } from 'lucide-react';
+import { Shield, Lock, Terminal, User, LogOut, Menu, X, Code2, HelpCircle, MailWarning, BookOpen, Compass, Award, ShieldAlert, FolderGit2, Bot, ShieldCheck, Users } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useUserProgress } from '../../context/UserProgressContext';
 import { Button } from '../ui/Button';
@@ -19,6 +19,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAut
   const navLinks = [
     { id: 'landing', label: 'Overview', icon: <Shield className="w-4 h-4" /> },
     { id: 'dashboard', label: 'Dashboard', icon: <Terminal className="w-4 h-4" /> },
+    { id: 'cyber-ai', label: 'CyberAI Mentor', icon: <Bot className="w-4 h-4 text-cyan-400 font-bold" /> },
+    { id: 'community', label: 'Community', icon: <Users className="w-4 h-4 text-cyan-400 font-bold" /> },
     { id: 'modules', label: 'Module Hub', icon: <BookOpen className="w-4 h-4 text-emerald-400" /> },
     { id: 'quiz', label: 'Quiz Test', icon: <HelpCircle className="w-4 h-4" /> },
     { id: 'phishing', label: 'Phishing Sim', icon: <MailWarning className="w-4 h-4" /> },
@@ -26,8 +28,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAut
     { id: 'code-insights', label: 'Real-World Code', icon: <Code2 className="w-4 h-4 text-cyan-400" /> },
     { id: 'terminal-lab', label: 'Terminal Lab', icon: <Terminal className="w-4 h-4 text-cyan-400 font-bold" /> },
     { id: 'mini-projects', label: 'Mini Projects', icon: <FolderGit2 className="w-4 h-4 text-purple-400 font-bold" /> },
-    { id: 'learning-paths', label: 'Career Paths', icon: <Compass className="w-4 h-4 text-purple-400" /> },
+    { id: 'interactive-labs', label: 'Interactive Labs', icon: <Terminal className="w-4 h-4 text-cyan-400 font-bold" /> },
+    { id: 'ctf-arena', label: 'CTF Arena', icon: <Award className="w-4 h-4 text-amber-400 font-bold" /> },
+    { id: 'soc-simulator', label: 'SOC Simulator', icon: <ShieldAlert className="w-4 h-4 text-rose-400 font-bold" /> },
+    {id: 'learning-paths', label: 'Career Center', icon: <Compass className="w-4 h-4 text-purple-400 font-bold" /> },
     { id: 'certificate', label: 'Certificate', icon: <Award className="w-4 h-4 text-amber-400" /> },
+    { id: 'verify-cert', label: 'Verify Cert', icon: <ShieldCheck className="w-4 h-4 text-emerald-400 font-bold" /> },
     { id: 'admin', label: 'Owner Admin', icon: <ShieldAlert className="w-4 h-4 text-amber-400" /> },
   ];
 

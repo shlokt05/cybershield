@@ -17,10 +17,17 @@ import { PhishingSimulatorPage } from './pages/PhishingSimulatorPage';
 import { PasswordAnalyzerPage } from './pages/PasswordAnalyzerPage';
 import { ThreatHubPage } from './pages/ThreatHubPage';
 import { ChecklistPage } from './pages/ChecklistPage';
-import { LearningPathsPage } from './pages/LearningPathsPage';
 import { CertificatePage } from './pages/CertificatePage';
 import { TerminalLabPage } from './pages/TerminalLabPage';
 import { MiniProjectsPage } from './pages/MiniProjectsPage';
+import { InteractiveLabsPage } from './pages/InteractiveLabsPage';
+import { CtfArenaPage } from './pages/CtfArenaPage';
+import { SocSimulatorPage } from './pages/SocSimulatorPage';
+import { CyberAiMentorPage } from './pages/CyberAiMentorPage';
+import { CyberAiMentorWidget } from './components/ai/CyberAiMentorWidget';
+import { PublicCertificateVerifyPage } from './pages/PublicCertificateVerifyPage';
+import { GamificationCommunityPage } from './pages/GamificationCommunityPage';
+import { CareerCenterPage } from './pages/CareerCenterPage';
 
 export function AppContent() {
   const [activeTab, setActiveTab] = useState('landing');
@@ -86,14 +93,17 @@ export function AppContent() {
         {activeTab === 'mini-projects' && (
           <MiniProjectsPage openAuthModal={(mode) => { setAuthModalMode(mode); setAuthModalOpen(true); }} />
         )}
-        {activeTab === 'learning-paths' && (
-          <LearningPathsPage
-            onSelectModule={handleSelectModule}
-            onNavigateToCertificate={() => setActiveTab('certificate')}
-          />
-        )}
+        {activeTab === 'interactive-labs' && <InteractiveLabsPage />}
+        {activeTab === 'ctf-arena' && <CtfArenaPage />}
+        {activeTab === 'soc-simulator' && <SocSimulatorPage />}
+        {activeTab === 'cyber-ai' && <CyberAiMentorPage />}
+        {activeTab === 'community' && <GamificationCommunityPage />}
+        {activeTab === 'learning-paths' && <CareerCenterPage />}
         {activeTab === 'certificate' && <CertificatePage />}
-        {activeTab === 'profile' && <ProfilePage />}
+        {activeTab === 'verify-cert' && (
+          <PublicCertificateVerifyPage onNavigateToPortfolio={() => setActiveTab('profile')} />
+        )}
+        {activeTab === 'profile' && <ProfilePage onNavigateToTab={(t) => setActiveTab(t)} />}
         {activeTab === 'settings' && <SettingsPage />}
       </main>
 
@@ -104,6 +114,8 @@ export function AppContent() {
         onClose={() => setAuthModalOpen(false)}
         initialMode={authModalMode}
       />
+
+      <CyberAiMentorWidget />
     </div>
   );
 }

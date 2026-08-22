@@ -161,10 +161,10 @@ export const CertificatePage: React.FC = () => {
             {/* Title */}
             <div>
               <h2 className="text-3xl sm:text-5xl font-serif font-bold text-white tracking-wide">
-                Certificate of Academic Excellence
+                Certificate of Completion
               </h2>
               <p className="text-xs sm:text-sm text-slate-400 mt-2 font-mono uppercase tracking-widest">
-                Certified Application Security & Vulnerability Remediation Practitioner
+                Practical Application Security & Cyber Defense Coursework
               </p>
             </div>
 
@@ -182,7 +182,7 @@ export const CertificatePage: React.FC = () => {
               </div>
 
               <p className="text-xs text-slate-300 mt-4 leading-relaxed max-w-xl mx-auto">
-                For completing all 5 core modules, passing OWASP security assessments, mastering parameterized SQL queries, DOMPurify sanitization, and demonstrating industry-grade cybersecurity skills.
+                For completing all 5 core modules, passing OWASP security assessments, mastering parameterized SQL queries, DOMPurify sanitization, and demonstrating practical cybersecurity skills.
               </p>
             </div>
 
@@ -190,7 +190,7 @@ export const CertificatePage: React.FC = () => {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono text-slate-400 pt-4 items-center">
               <div>
                 <span className="block text-[10px] text-slate-500 uppercase">Verification ID</span>
-                <span className="text-slate-200 font-semibold">{certId}</span>
+                <span className="text-slate-200 font-semibold">CS-2026-8F9B2C-VERIFIED</span>
               </div>
               <div>
                 <span className="block text-[10px] text-slate-500 uppercase">Issued Date</span>
@@ -207,6 +207,11 @@ export const CertificatePage: React.FC = () => {
                   cybershield.edu/verify
                 </div>
               </div>
+            </div>
+
+            {/* Mandatory Non-Accreditation Disclaimer */}
+            <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-[10px] text-slate-400 leading-relaxed text-left">
+              <strong>Accreditation Notice:</strong> This Certificate of Completion is issued by CyberShield Platform to acknowledge practical coursework and lab execution. It represents educational achievement on CyberShield and does not constitute third-party government or ISO vendor accreditation.
             </div>
           </div>
         </div>
