@@ -3,7 +3,7 @@
   "name": "CyberShield Security Platform",
   "icons": [
     {
-      "src": "/cybershield_icon.png",
+      "src": "/cybershield.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"

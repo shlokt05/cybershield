@@ -81,13 +81,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAut
     <nav className="sticky top-0 z-40 bg-[#070a12]/90 backdrop-blur-md border-b border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Brand Logo */}
+          {/* Brand Logo with 4D CyberShield Icon */}
           <div
             onClick={() => setActiveTab('landing')}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 group-hover:border-cyan-500/60 transition-all">
-              <Shield className="w-6 h-6" />
+            <div className="w-10 h-10 rounded-xl bg-slate-900 border border-cyan-500/40 p-0.5 overflow-hidden group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.6)] transition-all transform group-hover:scale-105">
+              <img src="/cybershield.png" alt="CyberShield 4D App Icon" className="w-full h-full object-cover rounded-lg" />
             </div>
             <div>
               <span className="text-lg font-bold text-white tracking-tight flex items-center gap-1.5">
