@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Lock, Terminal, User, LogOut, Menu, X, Code2, HelpCircle, MailWarning, BookOpen, Compass, Award, ShieldAlert, FolderGit2, Bot, ShieldCheck, Users } from 'lucide-react';
+import { Shield, Lock, Terminal, User, LogOut, Menu, X, Code2, HelpCircle, MailWarning, BookOpen, Compass, Award, ShieldAlert, FolderGit2, Bot, ShieldCheck, Users, Smartphone } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useUserProgress } from '../../context/UserProgressContext';
 import { Button } from '../ui/Button';
@@ -15,6 +15,29 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAut
   const { progress } = useUserProgress();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+  }, []);
+
+  const triggerMobileInstall = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        setDeferredPrompt(null);
+      }
+    } else {
+      alert('📱 CyberShield Mobile App Install Guide:\n\n1. Android (Chrome): Tap 3 dots (⋮) at top-right -> "Add to Home screen" or "Install App".\n\n2. iPhone (Safari): Tap Share button (⎋) -> "Add to Home Screen".');
+    }
+  };
 
   // Secret Hotkey for Platform Owner: Ctrl + Shift + A (or Cmd + Shift + A)
   useEffect(() => {
@@ -94,6 +117,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAut
 
           {/* User Section & Score Indicator */}
           <div className="hidden sm:flex items-center gap-3">
+            {/* Install Mobile App Button */}
+            <button
+              onClick={triggerMobileInstall}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-bold hover:bg-cyan-500/20 hover:border-cyan-500/60 transition-all shadow-sm"
+              title="Install CyberShield Mobile App"
+            >
+              <Smartphone className="w-4 h-4 text-cyan-400 animate-pulse" />
+              <span>Install App</span>
+            </button>
+
             {/* Quick CyberShield Score Badge */}
             <div
               onClick={() => setActiveTab('dashboard')}
@@ -200,6 +233,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAut
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-b border-slate-800 bg-[#070a12] px-4 pt-2 pb-4 space-y-2">
+          <button
+            onClick={() => {
+              triggerMobileInstall();
+              setMobileMenuOpen(false);
+            }}
+            className="w-full px-3 py-2.5 rounded-lg text-xs font-mono font-bold bg-cyan-500/20 border border-cyan-500/50 text-cyan-300 flex items-center gap-2"
+          >
+            <Smartphone className="w-4 h-4 text-cyan-400 animate-pulse" />
+            Install CyberShield Mobile App
+          </button>
           {navLinks.map((link) => (
             <button
               key={link.id}
