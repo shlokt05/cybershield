@@ -8,6 +8,7 @@ import { REAL_WORLD_CODE_INSIGHTS } from '../lib/mockData';
 import { useAuth } from '../context/AuthContext';
 import { AdBanner } from '../components/ads/AdBanner';
 import { GuestMonetizationBanner } from '../components/monetization/GuestMonetizationBanner';
+import { Cyber3DShieldGlobe } from '../components/common/Cyber3DShieldGlobe';
 
 interface LandingPageProps {
   onNavigateToDashboard: () => void;
@@ -124,6 +125,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </div>
             </div>
           </div>
+
+          {/* Interactive 3D Holographic Cyber Globe */}
+          <Cyber3DShieldGlobe />
         </div>
       </section>
 
