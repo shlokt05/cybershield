@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Shield, Lock, Terminal, User, LogOut, Menu, X, Code2, HelpCircle, MailWarning, BookOpen, Compass, Award, ShieldAlert, FolderGit2, Bot, ShieldCheck, Users } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useUserProgress } from '../../context/UserProgressContext';
@@ -15,6 +15,18 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAut
   const { progress } = useUserProgress();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+
+  // Secret Hotkey for Platform Owner: Ctrl + Shift + A (or Cmd + Shift + A)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        setActiveTab('admin');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [setActiveTab]);
 
   const navLinks = [
     { id: 'landing', label: 'Overview', icon: <Shield className="w-4 h-4" /> },
@@ -34,7 +46,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAut
     {id: 'learning-paths', label: 'Career Center', icon: <Compass className="w-4 h-4 text-purple-400 font-bold" /> },
     { id: 'certificate', label: 'Certificate', icon: <Award className="w-4 h-4 text-amber-400" /> },
     { id: 'verify-cert', label: 'Verify Cert', icon: <ShieldCheck className="w-4 h-4 text-emerald-400 font-bold" /> },
-    { id: 'admin', label: 'Owner Admin', icon: <ShieldAlert className="w-4 h-4 text-amber-400" /> },
   ];
 
   return (
@@ -112,15 +123,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, openAut
 
                 {userDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-52 bg-slate-900 border border-slate-800 rounded-xl shadow-xl py-1 z-50 animate-fadeIn">
-                    <button
-                      onClick={() => {
-                        setActiveTab('admin');
-                        setUserDropdownOpen(false);
-                      }}
-                      className="w-full px-4 py-2 text-left text-xs text-amber-300 hover:bg-slate-800 flex items-center gap-2 font-semibold"
-                    >
-                      <ShieldAlert className="w-4 h-4 text-amber-400" /> Owner Admin Portal
-                    </button>
                     <button
                       onClick={() => {
                         setActiveTab('modules');
