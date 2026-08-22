@@ -11,15 +11,31 @@ export const DownloadAppModal: React.FC<DownloadAppModalProps> = ({ isOpen, onCl
   if (!isOpen) return null;
 
   const handleDownloadApk = () => {
-    // Generate lightweight mock installer file for Android APK (~10MB)
-    const element = document.createElement('a');
-    const fileContent = 'CyberShield Android Application Binary Package (10.2 MB APK)';
-    const file = new Blob([fileContent], { type: 'application/vnd.android.package-archive' });
-    element.href = URL.createObjectURL(file);
-    element.download = 'CyberShield-v1.0.apk';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    // Native Android WebAPK Installation Handler
+    const nav = window.navigator as any;
+    const isAndroid = /android/i.test(nav.userAgent);
+
+    if ((window as any).deferredPwaPrompt) {
+      (window as any).deferredPwaPrompt.prompt();
+      (window as any).deferredPwaPrompt.userChoice.then((choiceResult: any) => {
+        if (choiceResult.outcome === 'accepted') {
+          alert('✅ CyberShield Android App installed successfully!');
+        }
+      });
+    } else if (isAndroid) {
+      alert(
+        '📱 Android Par Instant App Install Karne Ka Tarika:\n\n' +
+        '1. Chrome browser me uper 3 Dots (⋮) par click karein.\n' +
+        '2. "Install app" ya "Add to Home screen" par tap karein.\n\n' +
+        'Google WebAPK Engine instant aapke phone me CyberShield Mobile App install kar dega!'
+      );
+    } else {
+      alert(
+        '📱 Android Phone Par Install Karne Ke Liye:\n\n' +
+        'Mobile me link open karein: https://cybershield-eta-beryl.vercel.app/\n' +
+        'Phir Chrome menu (⋮) -> "Install App" par click karein.'
+      );
+    }
   };
 
   const handleDownloadExe = () => {
