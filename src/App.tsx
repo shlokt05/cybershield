@@ -6,6 +6,7 @@ import { Footer } from './components/layout/Footer';
 import { AuthModal } from './components/auth/AuthModal';
 import { OfflineGuard } from './components/common/OfflineGuard';
 import { DownloadAppModal } from './components/common/DownloadAppModal';
+import { CyberCodeRainBackground } from './components/common/CyberCodeRainBackground';
 
 import { LandingPage } from './pages/LandingPage';
 import { DashboardPage } from './pages/DashboardPage';
@@ -55,7 +56,10 @@ export function AppContent() {
 
   return (
     <OfflineGuard>
-      <div className="min-h-screen flex flex-col bg-[#070a12] text-slate-100 bg-cyber-grid">
+      <div className="min-h-screen flex flex-col bg-[#070a12] text-slate-100 bg-cyber-grid relative overflow-hidden">
+        {/* Moving Cyber Code Matrix Background */}
+        <CyberCodeRainBackground />
+
         <Navbar
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -63,7 +67,7 @@ export function AppContent() {
           onOpenDownloadModal={() => setDownloadModalOpen(true)}
         />
 
-        <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-8 relative z-10 perspective-1000 preserve-3d">
           {activeTab === 'landing' && (
             <LandingPage
               onNavigateToDashboard={() => setActiveTab('dashboard')}
