@@ -38,4 +38,4 @@ User-agent: Amazonbot
 Allow: /
 
 # Sitemap Location
-Sitemap: https://cybershield.vercel.app/sitemap.xml
+Sitemap: https://cybershield-eta-beryl.vercel.app/sitemap.xml

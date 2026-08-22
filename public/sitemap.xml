@@ -4,56 +4,56 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://cybershield.vercel.app/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <loc>https://cybershield-eta-beryl.vercel.app/</loc>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://cybershield.vercel.app/#mini-projects</loc>
-    <lastmod>2026-08-22</lastmod>
+    <loc>https://cybershield-eta-beryl.vercel.app/#mini-projects</loc>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cybershield.vercel.app/#modules</loc>
-    <lastmod>2026-08-22</lastmod>
+    <loc>https://cybershield-eta-beryl.vercel.app/#modules</loc>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cybershield.vercel.app/#terminal-lab</loc>
-    <lastmod>2026-08-22</lastmod>
+    <loc>https://cybershield-eta-beryl.vercel.app/#terminal-lab</loc>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cybershield.vercel.app/#quiz</loc>
-    <lastmod>2026-08-22</lastmod>
+    <loc>https://cybershield-eta-beryl.vercel.app/#quiz</loc>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cybershield.vercel.app/#phishing</loc>
-    <lastmod>2026-08-22</lastmod>
+    <loc>https://cybershield-eta-beryl.vercel.app/#phishing</loc>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cybershield.vercel.app/#password</loc>
-    <lastmod>2026-08-22</lastmod>
+    <loc>https://cybershield-eta-beryl.vercel.app/#password</loc>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cybershield.vercel.app/#code-insights</loc>
-    <lastmod>2026-08-22</lastmod>
+    <loc>https://cybershield-eta-beryl.vercel.app/#code-insights</loc>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cybershield.vercel.app/#certificate</loc>
-    <lastmod>2026-08-22</lastmod>
+    <loc>https://cybershield-eta-beryl.vercel.app/#certificate</loc>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
