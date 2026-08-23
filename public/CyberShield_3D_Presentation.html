@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberShield — 3D Presentation Deck</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #070a12;
+      color: #f8fafc;
+      overflow: hidden;
+    }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    
+    .perspective-container {
+      perspective: 1200px;
+    }
+    .slide-3d {
+      transform-style: preserve-3d;
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .glass-3d {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.95) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      box-shadow: 
+        0 25px 60px -15px rgba(0, 0, 0, 0.9),
+        0 0 40px -5px rgba(6, 182, 212, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .glow-cyan { text-shadow: 0 0 20px rgba(6, 182, 212, 0.8); }
+    .glow-emerald { text-shadow: 0 0 20px rgba(16, 185, 129, 0.8); }
+    
+    @keyframes float3d {
+      0%, 100% { transform: translateY(0px) rotateX(2deg) rotateY(-2deg); }
+      50% { transform: translateY(-12px) rotateX(-2deg) rotateY(2deg); }
+    }
+    .animate-float-3d { animation: float3d 5s ease-in-out infinite; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-4 sm:p-8 relative">
+  <!-- Canvas Matrix Rain Background -->
+  <canvas id="matrixCanvas" class="fixed inset-0 z-0 opacity-20 pointer-events-none"></canvas>
+
+  <!-- Top Presentation Header Bar -->
+  <header class="relative z-20 flex items-center justify-between border-b border-slate-800 pb-4">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-slate-900 border border-cyan-500/50 p-1 flex items-center justify-center text-cyan-400">
+        <i class="fa-solid me-0 fa-shield-halved text-xl"></i>
+      </div>
+      <div>
+        <h1 class="text-xl font-black text-white tracking-wider">CYBERSHIELD <span class="text-cyan-400">3D</span></h1>
+        <p class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Enterprise Executive Presentation</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <span id="slideCounter" class="px-3 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/30 font-mono text-xs font-bold text-cyan-300">Slide 1 / 7</span>
+      <button onclick="toggleFullScreen()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition-all">
+        <i class="fa-solid fa-expand mr-1"></i> Fullscreen
+      </button>
+    </div>
+  </header>
+
+  <!-- 3D Slide Viewport -->
+  <main class="relative z-10 my-auto perspective-container max-w-5xl w-full mx-auto">
+    <!-- SLIDE 1: Title & Unveiling -->
+    <div id="slide-1" class="slide-card glass-3d rounded-3xl p-8 sm:p-12 animate-float-3d space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold">
+        <i class="fa-solid fa-sparkles"></i> 3D EXECUTIVE DECK • SLIDE 1 OF 7
+      </div>
+      <h2 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        CyberShield <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-emerald-400 to-purple-400 glow-cyan">3D</span>
+      </h2>
+      <p class="text-lg sm:text-xl text-slate-300 max-w-3xl leading-relaxed">
+        India's Premier Interactive 3D Cybersecurity Platform & 50 Python Mini-Projects Hub for Computer Science Students & Security Engineers.
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-800">
+        <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 text-left">
+          <span class="text-2xl font-extrabold text-cyan-400">50</span>
+          <p class="text-xs text-slate-400">Python Tools</p>
+        </div>
+        <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 text-left">
+          <span class="text-2xl font-extrabold text-emerald-400">12</span>
+          <p class="text-xs text-slate-400">Terminal Labs</p>
+        </div>
+        <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 text-left">
+          <span class="text-2xl font-extrabold text-purple-400">28</span>
+          <p class="text-xs text-slate-400">Indian States</p>
+        </div>
+        <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 text-left">
+          <span class="text-2xl font-extrabold text-amber-400">100%</span>
+          <p class="text-xs text-slate-400">Device Safe</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Problem & Solution -->
+    <div id="slide-2" class="slide-card glass-3d rounded-3xl p-8 sm:p-12 hidden space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-mono font-bold">
+        PROBLEM STATEMENT & VISION • SLIDE 2 OF 7
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white">The Cyber Education Gap</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+        <div class="bg-slate-950/90 p-6 rounded-2xl border border-rose-500/30 space-y-3">
+          <h3 class="text-lg font-bold text-rose-400 flex items-center gap-2">
+            <i class="fa-solid fa-triangle-exclamation"></i> Traditional Challenge
+          </h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Dry theoretical cybersecurity articles lack hands-on practical CLI execution, leaving students unable to audit real-world code or defend against modern threats like SQLi & Ransomware.
+          </p>
+        </div>
+        <div class="bg-slate-950/90 p-6 rounded-2xl border border-emerald-500/30 space-y-3">
+          <h3 class="text-lg font-bold text-emerald-400 flex items-center gap-2">
+            <i class="fa-solid fa-circle-check"></i> CyberShield Solution
+          </h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Combines 3D interactive terminal sandboxes, 50 production Python tools, SOC incident triage, and real-time phishing simulators in a 100% client-side safe environment.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: 50 Enterprise Python Mini-Projects -->
+    <div id="slide-3" class="slide-card glass-3d rounded-3xl p-8 sm:p-12 hidden space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
+        ENTERPRISE LIBRARY • SLIDE 3 OF 7
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white">50 Production Python Tools</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+        <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 space-y-2">
+          <i class="fa-solid fa-network-wired text-cyan-400 text-2xl"></i>
+          <h4 class="text-sm font-bold text-white">Network AppSec</h4>
+          <p class="text-xs text-slate-400">Multi-threaded TCP Port Scanners, Packet Sniffers, and DNS Tunnel Detectors.</p>
+        </div>
+        <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 space-y-2">
+          <i class="fa-solid fa-key text-emerald-400 text-2xl"></i>
+          <h4 class="text-sm font-bold text-white">Applied Cryptography</h4>
+          <p class="text-xs text-slate-400">AES-256 GCM Encrypted Vaults, RSA Key Pairs, and Password Hash Cracker.</p>
+        </div>
+        <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 space-y-2">
+          <i class="fa-solid fa-shield-virus text-purple-400 text-2xl"></i>
+          <h4 class="text-sm font-bold text-white">SIEM & EDR Auditing</h4>
+          <p class="text-xs text-slate-400">SIEM Auth Log Parsers, EDR Keylogger Process Scanners, and OWASP SQLi Inspectors.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: 3D Holographic Engine & Terminal Sandbox -->
+    <div id="slide-4" class="slide-card glass-3d rounded-3xl p-8 sm:p-12 hidden space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-mono font-bold">
+        3D VISUAL ENGINE • SLIDE 4 OF 7
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Interactive 3D Holographic Architecture</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+        <div class="bg-slate-950/80 p-6 rounded-2xl border border-purple-500/30 space-y-2">
+          <h3 class="text-base font-bold text-purple-300">🔮 3D Shield & Mouse Tilt Cards</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Built using CSS `perspective(1000px)` mouse-tracking rotation, glowing cyan/emerald neon shadows, and real-time orbit threat beacons.
+          </p>
+        </div>
+        <div class="bg-slate-950/80 p-6 rounded-2xl border border-cyan-500/30 space-y-2">
+          <h3 class="text-base font-bold text-cyan-300">🟢 Matrix Cyber Code Rain Stream</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Performance-optimized HTML5 Canvas background rendering continuous falling green/cyan cyber code characters across all 15 modules.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Multi-Platform App Hub (Android, iOS & Windows) -->
+    <div id="slide-5" class="slide-card glass-3d rounded-3xl p-8 sm:p-12 hidden space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold">
+        CROSS-PLATFORM DISTRIBUTION • SLIDE 5 OF 7
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Native App Hub (Android, iOS & Windows)</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+        <div class="bg-slate-950/80 p-5 rounded-2xl border border-emerald-500/30 space-y-2">
+          <span class="text-xs font-mono text-emerald-400 font-bold">🤖 Android App</span>
+          <h4 class="text-sm font-bold text-white">Google WebAPK Engine</h4>
+          <p class="text-xs text-slate-400">Auto-generates signed APK directly on phone with 0 parse errors.</p>
+        </div>
+        <div class="bg-slate-950/80 p-5 rounded-2xl border border-purple-500/30 space-y-2">
+          <span class="text-xs font-mono text-purple-400 font-bold">🍎 iPhone (iOS)</span>
+          <h4 class="text-sm font-bold text-white">Safari iOS PWA</h4>
+          <p class="text-xs text-slate-400">1-Tap "Add to Home Screen" native iOS icon installation.</p>
+        </div>
+        <div class="bg-slate-950/80 p-5 rounded-2xl border border-cyan-500/30 space-y-2">
+          <span class="text-xs font-mono text-cyan-400 font-bold">💻 Windows Desktop</span>
+          <h4 class="text-sm font-bold text-white">14.5MB EXE Setup</h4>
+          <p class="text-xs text-slate-400">Native Windows executable launcher with custom dark blue icon.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: Security Hardening & Stealth Governance -->
+    <div id="slide-6" class="slide-card glass-3d rounded-3xl p-8 sm:p-12 hidden space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold">
+        ENTERPRISE GOVERNANCE • SLIDE 6 OF 7
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Defensive Hardening & Stealth Admin</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+        <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="text-base font-bold text-cyan-400">🔑 Stealth Admin Portal</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Restricted Owner Admin Portal protected by global hotkey (<code class="bg-slate-800 px-1 rounded">Ctrl+Shift+A</code>) and Master Passcode PIN (<code class="bg-slate-800 px-1 rounded text-emerald-400">ADMIN2026</code>).
+          </p>
+        </div>
+        <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="text-base font-bold text-emerald-400">💸 Passive Monetization & Security</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Integrated Google AdSense ad slots for unauthenticated visitors alongside OWASP sanitization and CSP security headers.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: Call To Action & Live Links -->
+    <div id="slide-7" class="slide-card glass-3d rounded-3xl p-8 sm:p-12 hidden space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
+        GRAND FINALE • SLIDE 7 OF 7
+      </div>
+      <h2 class="text-4xl sm:text-6xl font-extrabold text-white">Experience CyberShield Live</h2>
+      <p class="text-base sm:text-lg text-slate-300">
+        Deployed globally on Vercel with Pan-India college tracking across all 28 States & 8 UTs.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+        <a href="https://cybershield-eta-beryl.vercel.app/" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-extrabold text-base hover:opacity-90 transition-all shadow-[0_0_30px_rgba(6,182,212,0.5)]">
+          <i class="fa-solid fa-rocket mr-2"></i> Launch CyberShield Live
+        </a>
+        <a href="https://github.com/shlokt05/cybershield" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900 border border-slate-700 text-white font-extrabold text-base hover:border-cyan-500 transition-all">
+          <i class="fa-brands fa-github mr-2"></i> GitHub Repository
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Slide Navigation Bar -->
+  <footer class="relative z-20 flex items-center justify-between border-t border-slate-800 pt-4">
+    <button onclick="prevSlide()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-sm font-bold text-slate-300 transition-all flex items-center gap-2">
+      <i class="fa-solid fa-arrow-left"></i> Previous
+    </button>
+
+    <div class="flex items-center gap-2">
+      <span class="dot w-3 h-3 rounded-full bg-cyan-400 transition-all cursor-pointer" onclick="goToSlide(1)"></span>
+      <span class="dot w-3 h-3 rounded-full bg-slate-800 transition-all cursor-pointer" onclick="goToSlide(2)"></span>
+      <span class="dot w-3 h-3 rounded-full bg-slate-800 transition-all cursor-pointer" onclick="goToSlide(3)"></span>
+      <span class="dot w-3 h-3 rounded-full bg-slate-800 transition-all cursor-pointer" onclick="goToSlide(4)"></span>
+      <span class="dot w-3 h-3 rounded-full bg-slate-800 transition-all cursor-pointer" onclick="goToSlide(5)"></span>
+      <span class="dot w-3 h-3 rounded-full bg-slate-800 transition-all cursor-pointer" onclick="goToSlide(6)"></span>
+      <span class="dot w-3 h-3 rounded-full bg-slate-800 transition-all cursor-pointer" onclick="goToSlide(7)"></span>
+    </div>
+
+    <button onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-extrabold text-sm hover:opacity-90 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.4)]">
+      Next <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 7;
+
+    function updateSlide() {
+      for (let i = 1; i <= totalSlides; i++) {
+        const slide = document.getElementById(`slide-${i}`);
+        if (i === currentSlide) {
+          slide.classList.remove('hidden');
+        } else {
+          slide.classList.add('hidden');
+        }
+      }
+      document.getElementById('slideCounter').innerText = `Slide ${currentSlide} / ${totalSlides}`;
+      
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        if (index + 1 === currentSlide) {
+          dot.className = "dot w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_#06b6d4] transition-all cursor-pointer";
+        } else {
+          dot.className = "dot w-3 h-3 rounded-full bg-slate-800 transition-all cursor-pointer";
+        }
+      });
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) currentSlide++;
+      else currentSlide = 1;
+      updateSlide();
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) currentSlide--;
+      else currentSlide = totalSlides;
+      updateSlide();
+    }
+
+    function goToSlide(n) {
+      currentSlide = n;
+      updateSlide();
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    // Keyboard Arrow Controls
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Matrix Rain Canvas Effect
+    const canvas = document.getElementById('matrixCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const chars = '01CYBERSHIELDNMAPAES256SQLiXSSOWASP';
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = new Array(columns).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(7, 10, 18, 0.08)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillStyle = i % 2 === 0 ? '#06b6d4' : '#10b981';
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+    setInterval(drawMatrix, 40);
+  </script>
+</body>
+</html>
