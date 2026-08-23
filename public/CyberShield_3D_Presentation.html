@@ -40,6 +40,11 @@
       50% { transform: translateY(-12px) rotateX(-2deg) rotateY(2deg); }
     }
     .animate-float-3d { animation: float3d 5s ease-in-out infinite; }
+    @media print {
+      body { background: #070a12 !important; color: white !important; overflow: visible !important; }
+      header, footer, canvas { display: none !important; }
+      .slide-card { display: block !important; page-break-after: always; margin-bottom: 2rem; border: 1px solid #06b6d4 !important; }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between p-4 sm:p-8 relative">
@@ -50,17 +55,20 @@
   <header class="relative z-20 flex items-center justify-between border-b border-slate-800 pb-4">
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-xl bg-slate-900 border border-cyan-500/50 p-1 flex items-center justify-center text-cyan-400">
-        <i class="fa-solid me-0 fa-shield-halved text-xl"></i>
+        <i class="fa-solid fa-shield-halved text-xl"></i>
       </div>
       <div>
         <h1 class="text-xl font-black text-white tracking-wider">CYBERSHIELD <span class="text-cyan-400">3D</span></h1>
         <p class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Enterprise Executive Presentation</p>
       </div>
     </div>
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 sm:gap-3">
       <span id="slideCounter" class="px-3 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/30 font-mono text-xs font-bold text-cyan-300">Slide 1 / 7</span>
-      <button onclick="toggleFullScreen()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition-all">
-        <i class="fa-solid fa-expand mr-1"></i> Fullscreen
+      <button onclick="downloadPDF()" class="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-black text-xs transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)] flex items-center gap-1.5">
+        <i class="fa-solid fa-file-pdf text-sm"></i> Download PDF
+      </button>
+      <button onclick="toggleFullScreen()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition-all hidden sm:inline-flex items-center gap-1">
+        <i class="fa-solid fa-expand"></i> Fullscreen
       </button>
     </div>
   </header>
@@ -299,6 +307,11 @@
     function goToSlide(n) {
       currentSlide = n;
       updateSlide();
+    }
+
+    function downloadPDF() {
+      // Trigger native high-quality PDF print stream
+      window.print();
     }
 
     function toggleFullScreen() {
